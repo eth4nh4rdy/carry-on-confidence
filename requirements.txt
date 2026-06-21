@@ -1,0 +1,5 @@
+# Carry-On Confidence — requirements
+# Populated during development phases
+# python-docx — Phase 4
+# requests — Phase 1
+# pyyaml — Phase 1
