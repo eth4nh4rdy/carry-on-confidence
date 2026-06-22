@@ -1,5 +1,188 @@
 # topics.yaml
 # Carry-On Confidence — Travel scenario topic definitions
-# Populated in Phase 0, Task 0.3
-# Minimum 30 topics across 14 scenario categories
-# Review cadence: every 6 months
+# Populated: Phase 0, Task 0.3
+# Review cadence: every 6 months (manual operator review — see master roadmap)
+# Minimum 30 topics across 14 fixed scenario categories
+
+categories:
+  airport_checkin:
+    display_name: "Airport & Check-In"
+    topics:
+      - slug: missed_connection
+        display_name: "Missed Connection Panic"
+        description: "Your connecting flight has been delayed and you may miss your next flight. You need to find an airline representative and understand your rebooking options."
+      - slug: baggage_overweight
+        display_name: "Overweight Baggage Fee"
+        description: "Your suitcase is over the weight limit at check-in and you need to negotiate, repack on the spot, or pay the fee."
+      - slug: lost_boarding_pass
+        display_name: "Where Did My Boarding Pass Go?"
+        description: "You can't find your boarding pass and the kiosk won't reprint it. You need an agent's help before the gate closes."
+
+  immigration_customs:
+    display_name: "Immigration & Customs"
+    topics:
+      - slug: customs_declaration
+        display_name: "Wait, I Have to Declare What?"
+        description: "You're confused about the customs declaration form and unsure whether the souvenirs in your bag count as something you need to declare."
+      - slug: immigration_question_grilling
+        display_name: "The Immigration Officer Is Asking Questions"
+        description: "An immigration officer is asking about the purpose and length of your trip, and your answers need to sound confident, not suspicious."
+      - slug: random_bag_search
+        display_name: "Random Bag Search Sweats"
+        description: "You've been pulled aside for a secondary bag inspection and need to answer the customs officer's questions calmly."
+
+  ground_transportation:
+    display_name: "Ground Transportation"
+    topics:
+      - slug: airport_taxi_scam
+        display_name: "Is This Taxi Driver Scamming Me?"
+        description: "Your taxi driver quoted a flat rate that seems way too high, or the meter looks wrong, and you need to question it politely but firmly."
+      - slug: rideshare_pickup_confusion
+        display_name: "Where Is My Ride?"
+        description: "Your rideshare driver can't find you at the airport pickup zone and you need to communicate your exact location by phone or text."
+      - slug: rental_car_counter
+        display_name: "Rental Car Counter Surprise Fees"
+        description: "The rental car agent is listing extra fees and insurance options you didn't expect, and you need to ask what's actually required."
+
+  hotel_checkin_issues:
+    display_name: "Hotel Check-In & Issues"
+    topics:
+      - slug: room_not_ready
+        display_name: "Sorry, Your Room Isn't Ready"
+        description: "You've arrived hours before check-in time and your room isn't ready. You need to negotiate luggage storage or an early check-in."
+      - slug: wrong_room_booked
+        display_name: "This Isn't the Room I Booked"
+        description: "The room you've been given doesn't match what you reserved online, and you need to sort it out at the front desk."
+      - slug: noisy_room_complaint
+        display_name: "The Walls Are Paper Thin"
+        description: "Your room is right next to an elevator or a party, and you need to call the front desk to complain and request a room change."
+
+  restaurants_ordering:
+    display_name: "Restaurants & Ordering"
+    topics:
+      - slug: menu_panic
+        display_name: "Restaurant Roulette"
+        description: "The menu is entirely in the local language with no pictures, and you have to ask the server for help or just gamble on an order."
+      - slug: allergy_explanation
+        display_name: "I'm Allergic, Please Understand"
+        description: "You need to clearly explain a food allergy to a server who has limited English, and confirm the dish is actually safe to eat."
+      - slug: splitting_the_bill
+        display_name: "Splitting the Bill Standoff"
+        description: "Your group wants to split the check several different ways and the server is getting confused trying to keep up."
+
+  getting_lost_directions:
+    display_name: "Getting Lost & Asking Directions"
+    topics:
+      - slug: completely_lost
+        display_name: "I Think I'm Lost"
+        description: "You have no idea where you are or how you got there, and you need to stop a stranger and ask for directions back to somewhere familiar."
+      - slug: wrong_train_exit
+        display_name: "Wrong Exit, Wrong City Block"
+        description: "You took the wrong subway exit and now nothing looks familiar. You need to ask someone how to get back on track."
+      - slug: dead_phone_navigation
+        display_name: "Phone's Dead, Now What?"
+        description: "Your phone has died with no GPS and no map, and you need to get verbal directions to your hotel from a passerby."
+
+  shopping_bargaining:
+    display_name: "Shopping & Bargaining"
+    topics:
+      - slug: market_haggling
+        display_name: "Haggling at the Night Market"
+        description: "A street market vendor has quoted a price you think is too high, and you need to negotiate down without offending anyone."
+      - slug: wrong_size_return
+        display_name: "Wrong Size, Need a Return"
+        description: "An item you bought doesn't fit or doesn't work, and you need to ask a shop clerk about a return, exchange, or refund."
+      - slug: counterfeit_suspicion
+        display_name: "Is This Even Real?"
+        description: "You suspect a souvenir or branded item might be a knockoff, and you want to ask the seller questions before you commit to buying it."
+
+  emergency_situations:
+    display_name: "Emergency Situations"
+    topics:
+      - slug: lost_passport
+        display_name: "I Lost My Passport, Help"
+        description: "You've discovered your passport is missing and need to report it and find out how to reach the nearest embassy or consulate."
+      - slug: pickpocketed
+        display_name: "I Think I Got Pickpocketed"
+        description: "You realize your wallet or phone has been stolen and need to report the theft to local police or hotel security."
+      - slug: emergency_alert_confusion
+        display_name: "Emergency Alert, No Idea What It Means"
+        description: "Your phone or the street loudspeakers just blared an emergency alert in the local language, and you need to ask someone what's happening and what to do."
+
+  medical_pharmacy:
+    display_name: "Medical & Pharmacy"
+    topics:
+      - slug: pharmacy_symptom_explain
+        display_name: "Please Speak Slowly... I Have a Headache"
+        description: "You need to describe your symptoms to a pharmacist and figure out which over-the-counter medicine is safe to take."
+      - slug: urgent_care_visit
+        display_name: "Urgent Care, Unfamiliar System"
+        description: "You need to see a doctor for a sudden illness or injury and have to navigate an unfamiliar clinic's intake questions and payment process."
+      - slug: dental_emergency
+        display_name: "Toothache Abroad"
+        description: "A sudden, severe toothache has you searching for an emergency dentist and trying to explain the problem and your pain level."
+
+  sightseeing_tourist:
+    display_name: "Sightseeing & Tourist Situations"
+    topics:
+      - slug: ticket_line_confusion
+        display_name: "Which Line Is the Right Line?"
+        description: "There are multiple confusing ticket lines at a major attraction and you need to ask staff which one you actually need."
+      - slug: guided_tour_signup
+        display_name: "Signing Up for a Tour, Fingers Crossed"
+        description: "You're booking a guided tour on the spot and need to ask about the itinerary, duration, and what's included before handing over your money."
+      - slug: photo_request_stranger
+        display_name: "Can You Take Our Photo?"
+        description: "You want to ask a stranger to take a group photo and need to give clear instructions about framing and which button to press."
+
+  phone_communication:
+    display_name: "Phone Calls & Communication"
+    topics:
+      - slug: hotel_phone_call
+        display_name: "Calling the Front Desk From Your Room"
+        description: "You need to call hotel reception from your room phone to request extra towels, a wake-up call, or report a problem."
+      - slug: restaurant_reservation_call
+        display_name: "Booking a Table Over the Phone"
+        description: "You're making a dinner reservation by phone with no faces or gestures to help, and need to clearly state time, date, and party size."
+      - slug: customer_service_hold
+        display_name: "On Hold With Customer Service"
+        description: "You're calling a company helpline about a lost item or billing problem and need to explain the issue and understand the rep's response."
+
+  small_talk_strangers:
+    display_name: "Small Talk with Strangers"
+    topics:
+      - slug: airplane_seatmate_chat
+        display_name: "Trapped Next to a Chatty Stranger"
+        description: "Your seatmate on a long flight wants to chat, and you need to make polite small talk while also knowing how to wind the conversation down."
+      - slug: elevator_small_talk
+        display_name: "Elevator Small Talk Survival"
+        description: "You're stuck in a short, awkward elevator ride with another hotel guest and need a few lines of easy small talk to fill the silence."
+      - slug: local_recommendation_request
+        display_name: "Asking a Local Where to Eat"
+        description: "You strike up a conversation with a friendly local to ask for restaurant or activity recommendations in their neighborhood."
+
+  public_transport:
+    display_name: "Public Transport"
+    topics:
+      - slug: subway_ticket_machine
+        display_name: "The Ticket Machine Is Judging You"
+        description: "You're standing in front of a confusing subway ticket machine with a line forming behind you, and need help figuring out the right ticket and fare."
+      - slug: bus_stop_uncertainty
+        display_name: "Is This Even the Right Bus?"
+        description: "You're not sure if you're standing at the correct stop or if the approaching bus is the right route, and need to confirm with someone nearby."
+      - slug: train_seat_dispute
+        display_name: "Someone's in My Seat"
+        description: "Another passenger is sitting in your reserved train seat and you need to politely sort out the mix-up by checking tickets."
+
+  money_banking:
+    display_name: "Money & Banking"
+    topics:
+      - slug: atm_card_declined
+        display_name: "The ATM Just Ate My Card"
+        description: "Your card has been declined or stuck in a foreign ATM and you need to explain the problem to bank staff or a helpline."
+      - slug: currency_exchange_confusion
+        display_name: "Wait, How Much Did I Just Pay?"
+        description: "You're confused about the exchange rate or fees at a currency exchange counter and need to ask exactly what you're being charged."
+      - slug: bank_account_question
+        display_name: "Trying to Explain a Banking Problem"
+        description: "You're at a local bank branch trying to explain an issue with a transfer, withdrawal limit, or account access while abroad."

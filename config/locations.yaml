@@ -1,5 +1,274 @@
 # locations.yaml
-# Carry-On Confidence — Travel destination definitions
-# Populated in Phase 0, Task 0.4
-# Minimum 15 destinations with language and cultural metadata
-# Review cadence: every 6 months
+# Carry-On Confidence — Location registry
+# Populated: Phase 0, Task 0.4
+# Review cadence: every 6 months (manual operator review)
+#
+# INCLUSION RULE: Only add locations where English is the realistic tourist fallback language.
+# Japan and China are explicitly excluded — Korean travelers there use Japanese/Chinese, not English.
+# Apply this rule to every future addition. If in doubt, do not add.
+#
+# SCOPE VALUES: city | country | city_state
+# All entries are flat and independently valid --location argument values.
+# `parent` is a soft grouping label only — not a structural traversal requirement.
+
+locations:
+  - slug: vietnam
+    display_name: "Vietnam"
+    scope: country
+    parent: null
+    english_reliability: medium
+    local_languages:
+      - "Vietnamese"
+    regional_notes: "Vietnam stretches long north-to-south with distinct northern, central, and southern dialects and accents. It is one of the most popular Southeast Asian destinations for Korean travelers, with extensive direct flight routes from Korea."
+    worksheet_note: "Broad country-level entry — worksheets will be general; recommend a city-level location for more specific content."
+
+  - slug: da_nang
+    display_name: "Da Nang, Vietnam"
+    scope: city
+    parent: vietnam
+    english_reliability: high
+    local_languages:
+      - "Vietnamese"
+    regional_notes: "Da Nang is a central-coast beach city and one of the most popular Korean tourist destinations in Vietnam, with frequent direct flights from Korea. The local accent is central Vietnamese, distinct from Hanoi or Saigon speech."
+    worksheet_note: "Heavy Korean-tourist-facing resort infrastructure — worksheets can assume English-comfortable service staff in beach and hotel areas."
+
+  - slug: nha_trang
+    display_name: "Nha Trang, Vietnam"
+    scope: city
+    parent: vietnam
+    english_reliability: high
+    local_languages:
+      - "Vietnamese"
+    regional_notes: "Nha Trang is a long-established south-central coastal beach resort city, historically popular with Russian and Korean tourists. The local dialect is south-central Vietnamese."
+    worksheet_note: "Strong resort-strip English reliability, but local markets and streets away from the beachfront are less English-fluent — worth flagging in scenario tone."
+
+  - slug: phu_quoc
+    display_name: "Phu Quoc, Vietnam"
+    scope: city
+    parent: vietnam
+    english_reliability: medium
+    local_languages:
+      - "Vietnamese"
+    regional_notes: "Phu Quoc is an island in the Gulf of Thailand off Vietnam's southwest coast, developed more recently as a resort and duty-free destination. It has a quieter, more remote character than mainland Vietnamese cities."
+    worksheet_note: "English reliability is decent inside resort zones but drops sharply outside them — lean on resort, beach, and airport scenarios rather than local-town errands."
+
+  - slug: ho_chi_minh_city
+    display_name: "Ho Chi Minh City, Vietnam"
+    scope: city
+    parent: vietnam
+    english_reliability: medium
+    local_languages:
+      - "Vietnamese"
+    regional_notes: "Ho Chi Minh City (formerly Saigon) is Vietnam's largest city and commercial hub, with a fast-paced southern Vietnamese dialect and dense, motorbike-heavy street life."
+    worksheet_note: "Dense urban traffic and street-crossing scenarios are especially relevant here given the city's heavy motorbike culture."
+
+  - slug: hanoi
+    display_name: "Hanoi, Vietnam"
+    scope: city
+    parent: vietnam
+    english_reliability: medium
+    local_languages:
+      - "Vietnamese"
+    regional_notes: "Hanoi is Vietnam's capital, located in the north, with a more formal and traditional cultural tone than the south. The historic Old Quarter is the main tourist hub and speaks with a distinct northern Vietnamese accent."
+    worksheet_note: "English reliability is solid in the Old Quarter and tourist sites but thinner elsewhere — capital-city formality is a useful cultural hook."
+
+  - slug: usa
+    display_name: "United States"
+    scope: country
+    parent: null
+    english_reliability: high
+    local_languages:
+      - "Spanish (regionally widespread)"
+    regional_notes: "The USA is a native English-speaking country with enormous regional variation in accent, pace, and customer-service style. The main challenge for travelers is usually accent and idiom comprehension and unfamiliar cultural norms like tipping, not finding an English speaker."
+    worksheet_note: "Broad country-level entry — worksheets will be general; recommend a city-level location for accent- and region-specific content."
+
+  - slug: los_angeles
+    display_name: "Los Angeles, USA"
+    scope: city
+    parent: usa
+    english_reliability: high
+    local_languages:
+      - "Spanish"
+      - "Korean (notable diaspora community)"
+    regional_notes: "Los Angeles is a sprawling, car-dependent West Coast city with a relaxed Southern California speaking style. It is home to one of the largest Korean diaspora communities in the US, centered on the Koreatown district."
+    worksheet_note: "The large Korean-American community means some signage and service nearby may be bilingual, but the city's size and car-centric layout make distance and driving culture relevant to transportation scenarios."
+
+  - slug: honolulu
+    display_name: "Honolulu, Hawaii, USA"
+    scope: city
+    parent: usa
+    english_reliability: high
+    local_languages:
+      - "Hawaiian (place names, ceremonial use)"
+      - "Hawaiian Pidgin English (casual speech)"
+    regional_notes: "Honolulu, on the island of Oahu, is a major Pacific tourism hub with a relaxed island pace. Casual local speech is colored by Hawaiian Pidgin English, and many place and street names are Hawaiian in origin."
+    worksheet_note: "Hawaiian-derived vocabulary and casual pidgin-inflected speech outside hotel staff are worth a brief note; beach and resort vocabulary fits naturally here."
+
+  - slug: las_vegas
+    display_name: "Las Vegas, USA"
+    scope: city
+    parent: usa
+    english_reliability: high
+    local_languages:
+      - "Spanish (common among service staff)"
+    regional_notes: "Las Vegas is a desert resort city built around round-the-clock entertainment, casinos, and conventions, with a fast, transactional service culture and strong tipping expectations."
+    worksheet_note: "Tipping norms and casino or entertainment-venue etiquette are especially relevant scenario hooks for this location."
+
+  - slug: new_york_city
+    display_name: "New York City, USA"
+    scope: city
+    parent: usa
+    english_reliability: high
+    local_languages:
+      - "Spanish, Mandarin, and dozens of other immigrant community languages citywide"
+    regional_notes: "New York City is dense and fast-paced, with a famously quick, direct speaking style. Unlike most of the US, its extensive subway system is the default way to get around rather than a car."
+    worksheet_note: "Subway navigation and fast, blunt customer-service interactions are signature NYC scenarios that distinguish it from car-dependent US cities."
+
+  - slug: san_antonio
+    display_name: "San Antonio, Texas, USA"
+    scope: city
+    parent: usa
+    english_reliability: high
+    local_languages:
+      - "Spanish (widely and naturally spoken)"
+    regional_notes: "San Antonio is a South Texas city with deep Mexican-American cultural roots, a distinct Texan accent, and a slower-paced, friendlier Southern hospitality style than larger coastal US cities."
+    worksheet_note: "The bilingual English/Spanish environment and warmer, slower small-talk norms differentiate this location from other US entries."
+
+  - slug: thailand
+    display_name: "Thailand"
+    scope: country
+    parent: null
+    english_reliability: medium
+    local_languages:
+      - "Thai"
+    regional_notes: "Thailand is a longtime Southeast Asian tourism hub for Korean travelers. English reliability is concentrated heavily in tourist and hospitality zones, and the Thai script makes written signage a bigger barrier than spoken interaction in those areas."
+    worksheet_note: "Broad country-level entry — worksheets will be general; recommend a city-level location (Bangkok or Phuket) for sharper content."
+
+  - slug: bangkok
+    display_name: "Bangkok, Thailand"
+    scope: city
+    parent: thailand
+    english_reliability: medium
+    local_languages:
+      - "Thai"
+    regional_notes: "Bangkok is a sprawling, traffic-heavy capital mixing ultra-modern malls with street-level markets. English reliability is strong in tourist districts and on the BTS/MRT transit system but thins out quickly in local neighborhoods."
+    worksheet_note: "Street markets, tuk-tuks, and skytrain navigation are strong scenario hooks; expect English to drop off once away from main tourist corridors."
+
+  - slug: phuket
+    display_name: "Phuket, Thailand"
+    scope: city
+    parent: thailand
+    english_reliability: high
+    local_languages:
+      - "Thai"
+    regional_notes: "Phuket is Thailand's largest island and a top international beach resort destination, with a tourism-dependent service culture and heavy package-tour traffic from Korea, China, Russia, and Europe."
+    worksheet_note: "Resort, beach, and day-tour scenarios fit naturally; English reliability is high in resort areas but lower in local Phuket Town markets."
+
+  - slug: indonesia
+    display_name: "Indonesia"
+    scope: country
+    parent: null
+    english_reliability: medium
+    local_languages:
+      - "Indonesian (Bahasa Indonesia)"
+      - "various regional languages"
+    regional_notes: "Indonesia is a vast archipelago nation where English reliability varies enormously by island, concentrated heavily in tourist hubs like Bali and far less reliable elsewhere."
+    worksheet_note: "Broad country-level entry — strongly recommend the city-level Bali entry, since English reliability outside Bali is low and inconsistent."
+
+  - slug: bali
+    display_name: "Bali, Indonesia"
+    scope: city
+    parent: indonesia
+    english_reliability: high
+    local_languages:
+      - "Indonesian"
+      - "Balinese"
+    regional_notes: "Bali is a Hindu-majority island within mostly Muslim Indonesia, with a distinct local culture, temples, and rice-terrace landscapes that shape its tourism identity. Tourist zones such as Kuta, Seminyak, and Ubud are heavily geared toward international visitors, including Koreans."
+    worksheet_note: "Tourist-zone English reliability is strong, but scooter and moped traffic and unfamiliar road norms are a notable hazard worth reflecting in transportation scenarios."
+
+  - slug: singapore
+    display_name: "Singapore"
+    scope: city_state
+    parent: null
+    english_reliability: high
+    local_languages:
+      - "Mandarin"
+      - "Malay"
+      - "Tamil"
+    regional_notes: "Singapore is a multicultural city-state where English is an official language and the primary medium of business and signage, alongside Mandarin, Malay, and Tamil communities. It is known for being clean, orderly, and strict about public-conduct rules."
+    worksheet_note: "Uniquely high baseline English reliability for the region allows more nuanced or idiomatic English in worksheets; strict public-rule etiquette (littering, jaywalking, chewing gum) is a good cultural hook."
+
+  - slug: uae
+    display_name: "United Arab Emirates"
+    scope: country
+    parent: null
+    english_reliability: high
+    local_languages:
+      - "Arabic"
+      - "Hindi/Urdu (large expat workforce)"
+    regional_notes: "The UAE's resident population is majority foreign expat workers, making English the practical day-to-day lingua franca despite Arabic being the official language. Conservative cultural and dress norms apply in public spaces."
+    worksheet_note: "Broad country-level entry — worksheets will be general; recommend the city-level Dubai entry for sharper content."
+
+  - slug: dubai
+    display_name: "Dubai, UAE"
+    scope: city
+    parent: uae
+    english_reliability: high
+    local_languages:
+      - "Arabic"
+      - "Hindi/Urdu"
+      - "Tagalog (large expat service workforce)"
+    regional_notes: "Dubai is a global hub for luxury shopping, ultramodern architecture, and transit tourism. Its hospitality and service workforce is drawn overwhelmingly from South Asia and the Philippines, making English the default working language despite the city's cosmopolitan feel."
+    worksheet_note: "Shopping-mall and luxury-tourism scenarios fit naturally; flag modest dress and public-conduct norms as a useful cultural-etiquette hook."
+
+  - slug: philippines
+    display_name: "Philippines"
+    scope: country
+    parent: null
+    english_reliability: high
+    local_languages:
+      - "Filipino (Tagalog)"
+      - "various regional languages"
+    regional_notes: "English is one of the Philippines' two official languages and is taught from primary school, making it broadly spoken nationwide rather than confined to tourist zones, unlike most other Southeast Asian entries in this registry."
+    worksheet_note: "Broad country-level entry, but unlike other country-level entries here, English reliability is genuinely high even outside major cities; recommend Manila for city-specific content."
+
+  - slug: manila
+    display_name: "Manila, Philippines"
+    scope: city
+    parent: philippines
+    english_reliability: high
+    local_languages:
+      - "Filipino (Tagalog)"
+    regional_notes: "Manila is a dense, traffic-heavy metropolis where English is used fluently in business, education, and everyday service interactions. Code-switching between English and Tagalog (\"Taglish\") is common in casual speech."
+    worksheet_note: "High English fluency means worksheets can lean into more natural, idiomatic conversational English than most other entries in this registry."
+
+  - slug: paris
+    display_name: "Paris, France"
+    scope: city
+    parent: france
+    english_reliability: medium
+    local_languages:
+      - "French"
+    regional_notes: "Paris is France's capital and primary tourist hub. Service staff in major tourist zones — museums, central hotels, airports — are generally comfortable in English, but reliability drops noticeably outside those areas, and a polite French greeting is culturally expected before switching to English."
+    worksheet_note: "No full France country entry exists — Paris is city-only; flag clearly that English reliability falls off fast outside central tourist districts, and that a French greeting or politeness norm should appear in dialogue."
+
+  - slug: barcelona
+    display_name: "Barcelona, Spain"
+    scope: city
+    parent: spain
+    english_reliability: high
+    local_languages:
+      - "Spanish"
+      - "Catalan"
+    regional_notes: "Barcelona is the capital of Catalonia, with its own language and a strong regional identity distinct from the rest of Spain. Tourist, beachfront, and hospitality-industry areas have strong English reliability given the city's enormous international tourist volume."
+    worksheet_note: "No full Spain country entry exists — Barcelona is city-only; Catalan, not just Spanish, appears on signage, which is worth a brief cultural note in worksheets."
+
+  - slug: rome
+    display_name: "Rome, Italy"
+    scope: city
+    parent: italy
+    english_reliability: medium
+    local_languages:
+      - "Italian"
+    regional_notes: "Rome is Italy's capital and a top global tourist destination. English reliability is solid around major sights, hotels, and restaurants in tourist-heavy areas but decreases meaningfully in residential neighborhoods and with older residents."
+    worksheet_note: "No full Italy country entry exists — Rome is city-only; flag that English reliability concentrates around tourist landmarks and falls off in everyday neighborhood interactions."
