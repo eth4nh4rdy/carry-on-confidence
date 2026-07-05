@@ -1,3 +1,50 @@
-# sources.yaml
-# Carry-On Confidence — LLM provider and travel data API config
-# Populated in Phase 1 after data sources confirmed in Phase 0 Task 0.2
+# sources.yaml — Carry-On Confidence
+# API configuration for all data sources.
+# Key NAMES only — never key values. All values live in .env
+
+naver:
+  base_url: "https://openapi.naver.com/v1/search"
+  auth:
+    client_id_env: "NAVER_CLIENT_ID"
+    client_secret_env: "NAVER_CLIENT_SECRET"
+  endpoints:
+    blog: "/blog.json"
+    cafe: "/cafearticle.json"
+  defaults:
+    display: 10          # results per call, per endpoint
+    sort: "date"         # date = most recent first; sim = relevance
+    language: "ko"       # query language — Korean
+  quota:
+    daily_limit: 25000   # calls/day per endpoint (Naver Search API default)
+    note: "Blog and cafe are separate endpoints — each has its own 25,000/day limit"
+
+youtube:
+  base_url: "https://www.googleapis.com/youtube/v3"
+  auth:
+    api_key_env: "YOUTUBE_API_KEY"
+  endpoints:
+    search: "/search"
+    videos: "/videos"
+  defaults:
+    max_results: 5           # videos returned per search — keep low to manage quota
+    relevance_language: "ko" # bias results toward Korean-language content
+    type: "video"
+  quota:
+    daily_limit: 10000       # units/day (Google default)
+    search_cost: 100         # units per search.list call
+    videos_cost: 1           # units per videos.list call
+    note: "Keep search calls to 1 per fetcher run. At 100 units/call, budget is 100 searches/day max."
+
+kosis:
+  base_url: "https://kosis.kr/openapi/Param/statisticsParameterData.do"
+  auth:
+    api_key_env: "KOSIS_API_KEY"
+  defaults:
+    format: "json"
+    language: "ko"
+  target_stat:
+    org_id: "314"            # 한국관광통계 (Korea Tourism Statistics)
+    table_id: "DT_SEX_DEP_DSTN_AGG_MONTH"   # Outbound departure statistics — confirm at implementation time
+    note: "DEFERRED — Phase 1 only uses Naver and YouTube. Correct table is DT_SEX_DEP_DSTN_AGG_MONTH (orgId 314, 한국관광통계) but valid itmId and objL codes must be confirmed manually via kosis.kr browser UI before this fetcher can return live data. Revisit in Phase 2."
+  quota:
+    note: "No published hard limit. Treat as rate-limited — do not call more than once per generate.py run."
