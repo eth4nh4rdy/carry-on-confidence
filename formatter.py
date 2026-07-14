@@ -140,6 +140,14 @@ def format_worksheet(content: dict, level: int, level_config: dict, topic: str, 
     # 8. Page break
     doc.add_page_break()
 
+    # PAGE 2 — Keywords 1-3
+    _add_paragraph(doc, "Keywords", bold=True, size=14)
+    _render_keyword_page(doc, content["page2"])
+
+    # PAGE 3 — Keywords 4-6
+    _add_paragraph(doc, "Keywords", bold=True, size=14)
+    _render_keyword_page(doc, content["page3"])
+
     return None
 
 
@@ -191,10 +199,34 @@ ________________________________________________________________________________
         print("FAIL: _render_keyword_page —", e)
         sys.exit(1)
 
+    MOCK_KEYWORDS = """**boarding pass (noun)**
+**English:** The document you need to get on the plane.
+**Korean:** 비행기 탑승을 위해 필요한 서류입니다.
+**Synonyms:** ticket · pass · travel document
+**My sentence:** ______________________________
+
+______________________________________________________________________________________________
+**luggage (noun)**
+**English:** The bags and suitcases you travel with.
+**Korean:** 여행할 때 가지고 다니는 가방과 짐입니다.
+**Synonyms:** baggage · suitcase · bags
+**My sentence:** ______________________________
+
+______________________________________________________________________________________________
+**itinerary (noun)**
+**English:** A detailed plan of your trip including dates and destinations.
+**Korean:** 날짜와 목적지가 포함된 여행 계획서입니다.
+**Synonyms:** schedule · plan · route
+**My sentence:** ______________________________
+
+______________________________________________________________________________________________"""
+
     # Test 3 — format_worksheet() Page 1
     try:
         mock_content = {
-            "page1": "What is your favourite travel memory?\nWhere do you want to travel next?\nHave you ever had a travel disaster?"
+            "page1": "What is your favourite travel memory?\nWhere do you want to travel next?\nHave you ever had a travel disaster?",
+            "page2": MOCK_KEYWORDS,
+            "page3": MOCK_KEYWORDS,
         }
         mock_level_config = {"cefr": "B2", "label": "Upper Intermediate"}
         test_doc = Document()
@@ -206,4 +238,22 @@ ________________________________________________________________________________
         print("PASS: format_worksheet Page 1")
     except Exception as e:
         print("FAIL: format_worksheet Page 1 —", e)
+        sys.exit(1)
+
+    # Test 4 — format_worksheet() Pages 2-3
+    try:
+        mock_content_4 = {
+            "page1": "Have you ever missed a flight?",
+            "page2": MOCK_KEYWORDS,
+            "page3": MOCK_KEYWORDS,
+        }
+        test_doc4 = Document()
+        format_worksheet(mock_content_4, 6, {"cefr": "B2", "label": "Upper Intermediate"}, "airport", "tokyo", _doc=test_doc4)
+        para_texts = [p.text for p in test_doc4.paragraphs]
+        assert para_texts.count("Keywords") >= 2, "Expected 'Keywords' at least twice"
+        assert any("비행기 탑승" in t for t in para_texts), "Expected '비행기 탑승' in paragraphs"
+        assert any("날짜와 목적지" in t for t in para_texts), "Expected '날짜와 목적지' in paragraphs"
+        print("PASS: format_worksheet Pages 2-3")
+    except Exception as e:
+        print("FAIL: format_worksheet Pages 2-3 —", e)
         sys.exit(1)
