@@ -87,9 +87,60 @@ def _render_keyword_page(doc, page_content):
     doc.add_page_break()
 
 
-def format_worksheet(content: dict, level: int, level_config: dict, topic: str, location: str) -> str:
-    """Public entry point. Stub — returns None without error."""
-    pass
+def format_worksheet(content: dict, level: int, level_config: dict, topic: str, location: str, _doc=None) -> str:
+    """Public entry point. Renders Page 1 of the worksheet into a Document."""
+    doc = _doc if _doc is not None else Document()
+
+    # 2. Title image
+    title_img = os.path.join(os.path.dirname(__file__), "assets", "carry-on-title.png")
+    try:
+        para = doc.add_paragraph()
+        para.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        run = para.add_run()
+        run.add_picture(title_img, width=Inches(6.78))
+    except Exception:
+        _add_paragraph(doc, "Carry-On Confidence", bold=True, size=24, alignment=WD_ALIGN_PARAGRAPH.CENTER)
+        _add_paragraph(doc, "Fake It Till You Make the Flight", italic=True, size=14, alignment=WD_ALIGN_PARAGRAPH.CENTER)
+
+    # 3. Level line
+    para = doc.add_paragraph()
+    bold_run = para.add_run("Level: ")
+    bold_run.bold = True
+    bold_run.font.size = Pt(12)
+    plain_run = para.add_run(level_config["cefr"] + " — " + level_config["label"])
+    plain_run.font.size = Pt(12)
+
+    # 4. Name field
+    para = doc.add_paragraph()
+    bold_run = para.add_run("Name: ")
+    bold_run.bold = True
+    bold_run.font.size = Pt(12)
+    plain_run = para.add_run("_" * 40)
+    plain_run.font.size = Pt(12)
+
+    # 5. Date field
+    today = datetime.datetime.now().strftime("%B %d, %Y").replace(" 0", " ")
+    para = doc.add_paragraph()
+    bold_run = para.add_run("Date: ")
+    bold_run.bold = True
+    bold_run.font.size = Pt(12)
+    plain_run = para.add_run(today)
+    plain_run.font.size = Pt(12)
+
+    # 6. Section heading
+    _add_paragraph(doc, "Let's Talk!", bold=True, size=14)
+
+    # 7. Small talk questions
+    for line in content["page1"].splitlines():
+        stripped = line.strip()
+        if stripped:
+            _add_paragraph(doc, stripped, size=12)
+            _add_paragraph(doc, "_" * 100, size=12)
+
+    # 8. Page break
+    doc.add_page_break()
+
+    return None
 
 
 if __name__ == "__main__":
@@ -138,4 +189,21 @@ ________________________________________________________________________________
         print("PASS: _render_keyword_page")
     except Exception as e:
         print("FAIL: _render_keyword_page —", e)
+        sys.exit(1)
+
+    # Test 3 — format_worksheet() Page 1
+    try:
+        mock_content = {
+            "page1": "What is your favourite travel memory?\nWhere do you want to travel next?\nHave you ever had a travel disaster?"
+        }
+        mock_level_config = {"cefr": "B2", "label": "Upper Intermediate"}
+        test_doc = Document()
+        format_worksheet(mock_content, 6, mock_level_config, "airport", "tokyo", _doc=test_doc)
+        all_text = " ".join(p.text for p in test_doc.paragraphs)
+        assert "Let's Talk!" in all_text, "Expected 'Let's Talk!' in paragraphs"
+        assert "What is your favourite travel memory?" in all_text, "Expected question in paragraphs"
+        assert "B2" in all_text, "Expected 'B2' in paragraphs"
+        print("PASS: format_worksheet Page 1")
+    except Exception as e:
+        print("FAIL: format_worksheet Page 1 —", e)
         sys.exit(1)
