@@ -87,6 +87,30 @@ def _render_keyword_page(doc, page_content):
     doc.add_page_break()
 
 
+def _render_role_play_page(doc, page_content):
+    """Renders one role play card into doc. Adds a page break at the end."""
+    for line in page_content.splitlines():
+        if not line.strip():
+            doc.add_paragraph()
+            continue
+
+        if "**" in line:
+            parts = re.split(r'(\*\*.+?\*\*)', line)
+            para = doc.add_paragraph()
+            for part in parts:
+                if part.startswith("**") and part.endswith("**"):
+                    run = para.add_run(part[2:-2])
+                    run.bold = True
+                    run.font.size = Pt(12)
+                else:
+                    run = para.add_run(part)
+                    run.font.size = Pt(12)
+        else:
+            _add_paragraph(doc, line, size=12)
+
+    doc.add_page_break()
+
+
 def format_worksheet(content: dict, level: int, level_config: dict, topic: str, location: str, _doc=None) -> str:
     """Public entry point. Renders Page 1 of the worksheet into a Document."""
     doc = _doc if _doc is not None else Document()
@@ -147,6 +171,14 @@ def format_worksheet(content: dict, level: int, level_config: dict, topic: str, 
     # PAGE 3 — Keywords 4-6
     _add_paragraph(doc, "Keywords", bold=True, size=14)
     _render_keyword_page(doc, content["page3"])
+
+    # PAGE 4 — Role Play Card 1
+    _add_paragraph(doc, "Role Play", bold=True, size=14)
+    _render_role_play_page(doc, content["page4"])
+
+    # PAGE 5 — Role Play Card 2
+    _add_paragraph(doc, "Role Play", bold=True, size=14)
+    _render_role_play_page(doc, content["page5"])
 
     return None
 
@@ -227,6 +259,8 @@ ________________________________________________________________________________
             "page1": "What is your favourite travel memory?\nWhere do you want to travel next?\nHave you ever had a travel disaster?",
             "page2": MOCK_KEYWORDS,
             "page3": MOCK_KEYWORDS,
+            "page4": MOCK_KEYWORDS,
+            "page5": MOCK_KEYWORDS,
         }
         mock_level_config = {"cefr": "B2", "label": "Upper Intermediate"}
         test_doc = Document()
@@ -246,6 +280,8 @@ ________________________________________________________________________________
             "page1": "Have you ever missed a flight?",
             "page2": MOCK_KEYWORDS,
             "page3": MOCK_KEYWORDS,
+            "page4": MOCK_KEYWORDS,
+            "page5": MOCK_KEYWORDS,
         }
         test_doc4 = Document()
         format_worksheet(mock_content_4, 6, {"cefr": "B2", "label": "Upper Intermediate"}, "airport", "tokyo", _doc=test_doc4)
@@ -256,4 +292,40 @@ ________________________________________________________________________________
         print("PASS: format_worksheet Pages 2-3")
     except Exception as e:
         print("FAIL: format_worksheet Pages 2-3 —", e)
+        sys.exit(1)
+
+    MOCK_ROLE_PLAY = """🎭 SITUATION: Lost at the Airport
+
+📍 **Location:** Arrival hall, Incheon International Airport
+👤 **You are:** A Korean traveler who just landed and cannot find the exit
+👥 **Your partner is:** An airport information desk worker
+
+The situation:
+You landed 30 minutes ago but cannot find the immigration queue. You are confused
+and a little panicked. You need to ask for help politely and clearly.
+
+**Your goal:**
+Get clear directions to immigration and thank the worker.
+
+Try to use these words:
+boarding pass · itinerary · luggage"""
+
+    # Test 5 — format_worksheet() Pages 4-5
+    try:
+        mock_content_5 = {
+            "page1": "Have you ever missed a flight?",
+            "page2": MOCK_KEYWORDS,
+            "page3": MOCK_KEYWORDS,
+            "page4": MOCK_ROLE_PLAY,
+            "page5": MOCK_ROLE_PLAY,
+        }
+        test_doc5 = Document()
+        format_worksheet(mock_content_5, 6, {"cefr": "B2", "label": "Upper Intermediate"}, "airport", "tokyo", _doc=test_doc5)
+        para_texts = [p.text for p in test_doc5.paragraphs]
+        assert any("🎭 SITUATION:" in t for t in para_texts), "Expected '🎭 SITUATION:' in paragraphs"
+        assert any("Role Play" in t for t in para_texts), "Expected 'Role Play' in paragraphs"
+        assert para_texts.count("Role Play") >= 2, "Expected 'Role Play' at least twice"
+        print("PASS: format_worksheet Pages 4-5")
+    except Exception as e:
+        print("FAIL: format_worksheet Pages 4-5 —", e)
         sys.exit(1)
