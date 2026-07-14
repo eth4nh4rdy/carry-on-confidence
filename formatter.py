@@ -180,7 +180,45 @@ def format_worksheet(content: dict, level: int, level_config: dict, topic: str, 
     _add_paragraph(doc, "Role Play", bold=True, size=14)
     _render_role_play_page(doc, content["page5"])
 
-    return None
+    # PAGES 6-7 — Exercises (natural flow, no forced page break between)
+    _add_paragraph(doc, "Exercises", bold=True, size=14)
+    exercise_num = 0
+    for line in content["page6"].splitlines():
+        if line.strip() == "===EXERCISES_END===":
+            break
+        if line.strip() == "---":
+            continue
+        if not line.strip():
+            doc.add_paragraph()
+            continue
+        if re.match(r'^coc_\d+:', line.strip()):
+            exercise_num += 1
+            label = re.sub(r'^coc_\d+:\s*', '', line.strip())
+            _add_paragraph(doc, str(exercise_num) + ". " + label, bold=True, size=12)
+        elif line.strip().startswith("Instructions:"):
+            _add_paragraph(doc, line.strip(), italic=True, size=12)
+        elif line.strip().startswith("___"):
+            _add_paragraph(doc, line.strip(), size=12)
+        else:
+            _add_paragraph(doc, line.strip(), size=12)
+
+    # PAGE 8 — Homework
+    doc.add_page_break()
+    _add_paragraph(doc, "Homework", bold=True, size=14)
+    for line in content["page8"].splitlines():
+        if line.strip():
+            _add_paragraph(doc, line.strip(), size=12)
+    for _ in range(17):
+        _add_paragraph(doc, "_" * 100)
+
+    # Filename and save
+    filename = "coc_" + location + "_" + topic + "_L" + str(level) + "_" + datetime.datetime.now().strftime("%Y%m%d") + ".docx"
+    if _doc is not None:
+        return "test_mode"
+    os.makedirs("output", exist_ok=True)
+    out_path = os.path.join("output", filename)
+    doc.save(out_path)
+    return out_path
 
 
 if __name__ == "__main__":
@@ -253,6 +291,9 @@ ________________________________________________________________________________
 
 ______________________________________________________________________________________________"""
 
+    MOCK_EXERCISES_STUB = "coc_001: Warm Up\nInstructions: Answer the question.\nWhat do you do at the airport?\n_______________\n===EXERCISES_END==="
+    MOCK_HOMEWORK_STUB = "Write about your last trip."
+
     # Test 3 — format_worksheet() Page 1
     try:
         mock_content = {
@@ -261,6 +302,8 @@ ________________________________________________________________________________
             "page3": MOCK_KEYWORDS,
             "page4": MOCK_KEYWORDS,
             "page5": MOCK_KEYWORDS,
+            "page6": MOCK_EXERCISES_STUB,
+            "page8": MOCK_HOMEWORK_STUB,
         }
         mock_level_config = {"cefr": "B2", "label": "Upper Intermediate"}
         test_doc = Document()
@@ -282,6 +325,8 @@ ________________________________________________________________________________
             "page3": MOCK_KEYWORDS,
             "page4": MOCK_KEYWORDS,
             "page5": MOCK_KEYWORDS,
+            "page6": MOCK_EXERCISES_STUB,
+            "page8": MOCK_HOMEWORK_STUB,
         }
         test_doc4 = Document()
         format_worksheet(mock_content_4, 6, {"cefr": "B2", "label": "Upper Intermediate"}, "airport", "tokyo", _doc=test_doc4)
@@ -318,6 +363,8 @@ boarding pass · itinerary · luggage"""
             "page3": MOCK_KEYWORDS,
             "page4": MOCK_ROLE_PLAY,
             "page5": MOCK_ROLE_PLAY,
+            "page6": MOCK_EXERCISES_STUB,
+            "page8": MOCK_HOMEWORK_STUB,
         }
         test_doc5 = Document()
         format_worksheet(mock_content_5, 6, {"cefr": "B2", "label": "Upper Intermediate"}, "airport", "tokyo", _doc=test_doc5)
@@ -328,4 +375,68 @@ boarding pass · itinerary · luggage"""
         print("PASS: format_worksheet Pages 4-5")
     except Exception as e:
         print("FAIL: format_worksheet Pages 4-5 —", e)
+        sys.exit(1)
+
+    MOCK_EXERCISES = """coc_001: What Do You Say When...?
+Instructions: Read the situation and write what you would say.
+You are at the check-in counter and the agent asks for your passport.
+What do you say?
+_______________________________________________
+
+---
+coc_004: Fill the Silence
+Instructions: The conversation has stalled. Write what you say next.
+The agent has gone quiet after scanning your boarding pass.
+_______________________________________________
+
+===EXERCISES_END===
+This line must not appear in the document."""
+
+    MOCK_HOMEWORK = "Write a short paragraph about a time you had to ask for help while travelling."
+
+    # Test 6 — format_worksheet() Pages 6-8
+    try:
+        mock_content_6 = {
+            "page1": "Have you ever missed a flight?",
+            "page2": MOCK_KEYWORDS,
+            "page3": MOCK_KEYWORDS,
+            "page4": MOCK_ROLE_PLAY,
+            "page5": MOCK_ROLE_PLAY,
+            "page6": MOCK_EXERCISES,
+            "page8": MOCK_HOMEWORK,
+        }
+        test_doc6 = Document()
+        result6 = format_worksheet(mock_content_6, 6, {"cefr": "B2", "label": "Upper Intermediate"}, "airport", "tokyo", _doc=test_doc6)
+        assert result6 == "test_mode", "Expected return value 'test_mode'"
+        para_texts = [p.text for p in test_doc6.paragraphs]
+        assert any("Exercises" in t for t in para_texts), "Expected 'Exercises' in paragraphs"
+        assert any("Homework" in t for t in para_texts), "Expected 'Homework' in paragraphs"
+        assert not any("===EXERCISES_END===" in t for t in para_texts), "'===EXERCISES_END===' must not appear"
+        assert not any("This line must not appear in the document" in t for t in para_texts), "Sentinel line must not appear"
+        assert any("What Do You Say When" in t for t in para_texts), "Expected exercise title in paragraphs"
+        blank_count = sum(1 for t in para_texts if t == "_" * 100)
+        assert blank_count >= 17, f"Expected at least 17 blank lines, got {blank_count}"
+        print("PASS: format_worksheet Pages 6-8")
+    except Exception as e:
+        print("FAIL: format_worksheet Pages 6-8 —", e)
+        sys.exit(1)
+
+    # Test 7 — format_worksheet() save to disk
+    try:
+        mock_content_7 = {
+            "page1": "Have you ever missed a flight?",
+            "page2": MOCK_KEYWORDS,
+            "page3": MOCK_KEYWORDS,
+            "page4": MOCK_ROLE_PLAY,
+            "page5": MOCK_ROLE_PLAY,
+            "page6": MOCK_EXERCISES,
+            "page8": MOCK_HOMEWORK,
+        }
+        mock_level_config_7 = {"cefr": "B2", "label": "Upper Intermediate"}
+        result7 = format_worksheet(mock_content_7, 6, mock_level_config_7, "tokyo", "airport")
+        assert isinstance(result7, str) and result7.endswith(".docx"), f"Expected .docx path, got {result7!r}"
+        assert os.path.exists(result7), f"Expected file to exist: {result7}"
+        print("PASS: format_worksheet save to disk")
+    except Exception as e:
+        print("FAIL: format_worksheet save to disk —", e)
         sys.exit(1)
