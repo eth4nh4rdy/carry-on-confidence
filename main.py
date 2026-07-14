@@ -5,6 +5,9 @@ Carry-On Confidence — CLI entry point.
 import argparse
 import sys
 import yaml
+from aggregator import aggregate
+from generator import generate_worksheet, load_exercise_bank
+from formatter import format_worksheet
 
 
 def _load_valid_topics() -> set:
@@ -60,7 +63,18 @@ def main() -> None:
         sys.exit(0)
 
     _validate_args(args, valid_topics, valid_locations)
-    print("Args valid. Pipeline not yet wired.")
+
+    with open("config/levels.yaml", "r", encoding="utf-8") as f:
+        levels_data = yaml.safe_load(f)
+    level_config = levels_data["levels"][args.level]
+
+    exercise_bank = load_exercise_bank(args.level)
+
+    payload = aggregate(args.location, args.topic, args.level)
+    content = generate_worksheet(payload, args.level, level_config, exercise_bank)
+    output_path = format_worksheet(content, args.level, level_config, args.topic, args.location)
+
+    print(f"Worksheet saved: {output_path}")
 
 
 if __name__ == "__main__":
