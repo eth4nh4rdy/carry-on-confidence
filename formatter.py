@@ -9,6 +9,7 @@ Pure presentation layer — no LLM calls, no data fetching.
 import os
 import re
 import datetime
+import yaml
 from docx import Document
 from docx.shared import Pt, Inches
 from docx.enum.text import WD_ALIGN_PARAGRAPH
@@ -78,8 +79,8 @@ def _render_keyword_page(doc, page_content):
                 bold_run.font.size = Pt(12)
 
         # Two writing blank lines
-        _add_paragraph(doc, "_" * 100)
-        _add_paragraph(doc, "_" * 100)
+        _add_paragraph(doc, "_" * 96)
+        _add_paragraph(doc, "_" * 96)
 
         # Spacing between blocks
         _add_paragraph(doc)
@@ -159,7 +160,9 @@ def format_worksheet(content: dict, level: int, level_config: dict, topic: str, 
         stripped = line.strip()
         if stripped:
             _add_paragraph(doc, stripped, size=12)
-            _add_paragraph(doc, "_" * 100, size=12)
+            _add_paragraph(doc)
+            _add_paragraph(doc)
+            _add_paragraph(doc)
 
     # 8. Page break
     doc.add_page_break()
@@ -182,6 +185,16 @@ def format_worksheet(content: dict, level: int, level_config: dict, topic: str, 
 
     # PAGES 6-7 — Exercises (natural flow, no forced page break between)
     _add_paragraph(doc, "Exercises", bold=True, size=14)
+
+    # Build emoji lookup from exercise bank
+    _exercise_bank_path = os.path.join(os.path.dirname(__file__), "exercises", "carry_on_exercise_bank.yaml")
+    try:
+        with open(_exercise_bank_path, "r", encoding="utf-8") as f:
+            _bank_data = yaml.safe_load(f)
+        _emoji_lookup = {ex["id"]: ex.get("emoji", "") for ex in _bank_data.get("exercises", [])}
+    except Exception:
+        _emoji_lookup = {}
+
     exercise_num = 0
     for line in content["page6"].splitlines():
         if line.strip() == "===EXERCISES_END===":
@@ -193,8 +206,11 @@ def format_worksheet(content: dict, level: int, level_config: dict, topic: str, 
             continue
         if re.match(r'^coc_\d+:', line.strip()):
             exercise_num += 1
+            coc_id = re.match(r'^(coc_\d+):', line.strip()).group(1)
             label = re.sub(r'^coc_\d+:\s*', '', line.strip())
-            _add_paragraph(doc, str(exercise_num) + ". " + label, bold=True, size=12)
+            emoji = _emoji_lookup.get(coc_id, "")
+            prefix = f"{emoji} " if emoji else ""
+            _add_paragraph(doc, f"{exercise_num}. {prefix}{label}", bold=True, size=12)
         elif line.strip().startswith("Instructions:"):
             _add_paragraph(doc, line.strip(), italic=True, size=12)
         elif line.strip().startswith("___"):
@@ -209,7 +225,7 @@ def format_worksheet(content: dict, level: int, level_config: dict, topic: str, 
         if line.strip():
             _add_paragraph(doc, line.strip(), size=12)
     for _ in range(17):
-        _add_paragraph(doc, "_" * 100)
+        _add_paragraph(doc, "_" * 96)
 
     # Filename and save
     filename = "coc_" + location + "_" + topic + "_L" + str(level) + "_" + datetime.datetime.now().strftime("%Y%m%d") + ".docx"

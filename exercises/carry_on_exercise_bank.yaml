@@ -4,7 +4,7 @@ meta:
   organization: "Primo English"
   version: "1.0"
   created: "2026-07-11"
-  created_by: "MODE: DEV (Claude Sonnet 4.6)"
+  created_by: "Ethan"
   description: >
     Exercise type library for Carry-On Confidence — a scenario-driven, destination-aware
     ESL worksheet generator for Korean travelers. Defines all 10 exercise types with
@@ -34,6 +34,7 @@ generation_rules:
 exercises:
 
   - id: coc_001
+    emoji: ✈️
     type: what_do_you_say_when
     display_name: "What Do You Say When...?"
     difficulty_min: 1
@@ -50,40 +51,13 @@ exercises:
       distance. At levels 1–2, keep the scenario simple and the stakes low.
       At higher levels, increase ambiguity and pressure.
     format: |
-      ✈️ WHAT DO YOU SAY WHEN...?
-
       [1–2 sentence scenario placing the student in the moment]
 
       What do you say?
-      _______________________________________________________________
-      _______________________________________________________________
-
-  - id: coc_002
-    type: polish_the_panic
-    display_name: "Polish the Panic"
-    difficulty_min: 3
-    difficulty_max: 9
-    keyword_requirement: "no"
-    item_count: 1
-    estimated_lines: 5
-    instructions: "Read the panicked statement. Rewrite it as a natural, confident English sentence."
-    student_response_format: "1–2 sentences written in the blank provided"
-    answer_key: false
-    tone_note: >
-      The panicked version must sound authentically Korean — broken grammar, awkward
-      word order, or Korean sentence structure mapped directly onto English. Not
-      random gibberish. The student should recognise it immediately as something
-      they or a classmate might actually say. Never invented nonsense.
-    format: |
-      😅 POLISH THE PANIC
-
-      "[panicked English statement]"
-
-      Rewrite this as a natural, confident English sentence:
-      _______________________________________________________________
-      _______________________________________________________________
+      _________________________________________________________________________________________________
 
   - id: coc_003
+    emoji: 🔤
     type: lost_in_translation
     display_name: "Lost in Translation"
     difficulty_min: 4
@@ -91,7 +65,7 @@ exercises:
     keyword_requirement: "no"
     item_count: 1
     estimated_lines: 7
-    instructions: "A Korean traveler said this in English. What is wrong with it? Write a more natural version below."
+    instructions: "A traveler said this in English. What is wrong with it? Write a more natural version below."
     student_response_format: "Two blanks — one for identifying the problem, one for the natural fix"
     answer_key: false
     tone_note: >
@@ -100,18 +74,13 @@ exercises:
       expression. Never invented nonsense. The problem should be identifiable by a
       student at the target level — not a trick, not obscure.
     format: |
-      🔤 LOST IN TRANSLATION
-
-      A Korean traveler said: "[plausible but wrong English phrase]"
-
-      What is wrong with this?
-      _______________________________________________________________
+      A traveler said: "[plausible but wrong English phrase]"
 
       Write a more natural version:
-      _______________________________________________________________
-      _______________________________________________________________
+      _________________________________________________________________________________________________
 
   - id: coc_004
+    emoji: 🤐
     type: fill_the_silence
     display_name: "Fill the Silence"
     difficulty_min: 1
@@ -129,16 +98,14 @@ exercises:
       should be simple and the expected response minimal. At higher levels, the silence
       should carry more social weight.
     format: |
-      🤐 FILL THE SILENCE
-
       [Context: where you are and who you're talking to]
       [Other person's line that has created a natural pause]
 
       What do you say next?
-      _______________________________________________________________
-      _______________________________________________________________
+      _________________________________________________________________________________________________
 
   - id: coc_005
+    emoji: 💬
     type: survival_dialogue_completion
     display_name: "Survival Dialogue Completion"
     difficulty_min: 1
@@ -156,47 +123,15 @@ exercises:
       something meaningful — not just yes or no. At least one blank must naturally
       invite use of a worksheet keyword.
     format: |
-      💬 SURVIVAL DIALOGUE COMPLETION
-
       [Other person's name/role]: "[line]"
-      You: _______________________________________________________________
+      You: _______________________________________________________________________________________
       [Other person's name/role]: "[line]"
       You: "[provided — student does not fill this in]"
       [Other person's name/role]: "[line]"
-      You: _______________________________________________________________
-
-      Remember to use at least one keyword from this worksheet!
-
-  - id: coc_006
-    type: cultural_misunderstanding_fix_it
-    display_name: "Cultural Misunderstanding Fix-It"
-    difficulty_min: 5
-    difficulty_max: 10
-    keyword_requirement: "no"
-    item_count: 1
-    estimated_lines: 8
-    instructions: "Read what happened. What went wrong? What should this traveler have done instead?"
-    student_response_format: "Open paragraph response in the blank provided"
-    answer_key: false
-    tone_note: >
-      Scenarios must be very Korean — the traveler's behaviour must stem from genuine
-      Korean cultural norms applied sincerely in the wrong context. Humour and mild
-      absurdity are encouraged. The traveler should never be the villain — just
-      confidently, sincerely wrong. Think: excessive politeness, gift-giving customs,
-      age-based deference, indirect refusal, or Confucian hierarchy logic applied
-      abroad. The more recognisable the Korean behaviour, the better.
-    format: |
-      🤦 CULTURAL MISUNDERSTANDING FIX-IT
-
-      [3–5 sentence story describing a very Korean cultural behaviour applied in the
-      wrong overseas context — humorous, absurd where appropriate, never cruel]
-
-      What went wrong? What should this traveler have done instead?
-      _______________________________________________________________
-      _______________________________________________________________
-      _______________________________________________________________
+      You: _______________________________________________________________________________________
 
   - id: coc_007
+    emoji: ⬆️
     type: the_upgrade_attempt
     display_name: "The Upgrade Attempt"
     difficulty_min: 3
@@ -215,15 +150,13 @@ exercises:
       and natural should be more subtle — register, tone, or idiomatic choice rather
       than obvious grammar.
     format: |
-      ⬆️ THE UPGRADE ATTEMPT
-
       Basic: "[functional but flat English sentence]"
 
       Upgraded version:
-      _______________________________________________________________
-      _______________________________________________________________
+      _________________________________________________________________________________________________
 
   - id: coc_008
+    emoji: 😬
     type: what_went_wrong
     display_name: "What Went Wrong?"
     difficulty_min: 4
@@ -243,17 +176,15 @@ exercises:
       paralysed by not wanting to cause 눈치 problems. Maximum relatable cringe.
       The student should finish reading and think "I would have done the same thing."
     format: |
-      😬 WHAT WENT WRONG?
-
       [3–5 sentence story: absurd, humorous, relatable Korean traveler situation
       that ended badly due to a communication failure]
 
       What was the key communication mistake?
       What should this traveler have said or done differently?
-      _______________________________________________________________
-      _______________________________________________________________
+      _________________________________________________________________________________________________
 
   - id: coc_009
+    emoji: 🚨
     type: emergency_script
     display_name: "Emergency Script"
     difficulty_min: 1
@@ -272,17 +203,13 @@ exercises:
       slightly more complexity but the output is still short. Must naturally invite
       use of at least one worksheet keyword.
     format: |
-      🚨 EMERGENCY SCRIPT
-
       [1–2 sentence scenario: urgent, real, survivable situation at the destination]
 
       Write exactly what you would say (2–3 sentences):
-      _______________________________________________________________
-      _______________________________________________________________
-
-      Tip: Use at least one keyword from this worksheet!
+      _________________________________________________________________________________________________
 
   - id: coc_010
+    emoji: 👀
     type: read_the_room
     display_name: "Read the Room"
     difficulty_min: 7
@@ -301,14 +228,12 @@ exercises:
       feel real — social settings, professional encounters, service interactions.
       Avoid anything culturally obscure or region-specific to the point of unfairness.
     format: |
-      👀 READ THE ROOM
-
       [Context: where you are and who is speaking]
       "[Indirect English statement with meaningful subtext]"
 
       What is this person really telling you?
-      _______________________________________________________________
+      ______________________________________________________________________
 
       How would you respond?
-      _______________________________________________________________
-      _______________________________________________________________
+      ______________________________________________________________________
+      ______________________________________________________________________
