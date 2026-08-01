@@ -272,3 +272,81 @@ locations:
       - "Italian"
     regional_notes: "Rome is Italy's capital and a top global tourist destination. English reliability is solid around major sights, hotels, and restaurants in tourist-heavy areas but decreases meaningfully in residential neighborhoods and with older residents."
     worksheet_note: "No full Italy country entry exists — Rome is city-only; flag that English reliability concentrates around tourist landmarks and falls off in everyday neighborhood interactions."
+
+  - slug: australia
+    display_name: "Australia"
+    scope: country
+    parent: null
+    english_reliability: high
+    local_languages:
+      - "English (sole official language)"
+      - "Australian Aboriginal languages (regional)"
+    regional_notes: "Australia is a native English-speaking country with a distinctive accent characterised by vowel shifts, rising intonation, and heavy use of informal contractions and slang. Over 342,000 South Korean tourists visited Australia in 2024 — 34% above pre-pandemic levels — making it one of the fastest-growing long-haul destinations for Korean travelers. Korean visitors are predominantly first-timers concentrated in major cities, with growing interest in regional and experiential travel. Top Korean entry points are Sydney (primary), Brisbane/Gold Coast, and Melbourne."
+    worksheet_note: "Broad country-level entry — recommend a city-level entry for location-specific content. Key cultural notes for Korean travelers: tipping is not expected or required (unlike the USA), jaywalking fines apply in many states, and the Australian accent can genuinely surprise ESL learners accustomed to American or British English."
+
+  - slug: sydney
+    display_name: "Sydney, Australia"
+    scope: city
+    parent: australia
+    english_reliability: high
+    local_languages:
+      - "English"
+      - "Mandarin, Cantonese, Arabic (large diaspora communities)"
+    regional_notes: "Sydney is Australia's largest city and the primary gateway for Korean visitors, accounting for 39% of Korean holiday visitor nights in Australia. It is a coastal harbour city defined by the Opera House, Harbour Bridge, Bondi Beach, and a strong café and dining culture. The accent is standard Eastern Australian — fast-paced, informal, with heavy use of contracted and shortened words."
+    worksheet_note: "Iconic landmark scenarios (Opera House, Harbour Bridge climb, Bondi Beach) resonate strongly with Korean visitors. Sydney is also a major Korean working holiday hub — scenarios involving accommodation-hunting, banking, or work-related interactions are highly relevant for student segments. No tipping expectation is a key cultural difference to highlight."
+
+  - slug: melbourne
+    display_name: "Melbourne, Australia"
+    scope: city
+    parent: australia
+    english_reliability: high
+    local_languages:
+      - "English"
+      - "Greek, Italian, Vietnamese, Mandarin (large diaspora communities)"
+    regional_notes: "Melbourne is Australia's second city and cultural capital, known for its laneway café culture, street art, live music, sport, and fashion. It is one of the top three Korean visitor destinations in Australia. The city has a reputation for unpredictable weather ('four seasons in one day') and a more European, cultural-capital feel than Sydney."
+    worksheet_note: "Café culture and coffee-ordering vocabulary is especially relevant in Melbourne — the city is famous for its specialty coffee scene and barista culture. Tram navigation is a distinctive Melbourne transport scenario not applicable to other Australian cities. No tipping expectation applies."
+
+  - slug: brisbane_gold_coast
+    display_name: "Brisbane and Gold Coast, Australia"
+    scope: city
+    parent: australia
+    english_reliability: high
+    local_languages:
+      - "English"
+    regional_notes: "Brisbane and the Gold Coast are treated as a single travel zone by Tourism Australia's Korean market data, connected by a 1-hour drive and sharing direct flight routes from Korea. Brisbane is Queensland's capital — a subtropical, relaxed river city and 2032 Olympic host. The Gold Coast is a high-rise beachfront strip defined by surf beaches, theme parks, and resort tourism. Both attract significant Korean visitor numbers, particularly families and younger travelers."
+    worksheet_note: "Theme park and surf beach scenarios are signature Gold Coast hooks; Brisbane scenarios can lean into city culture and the upcoming Olympics context. Queensland's subtropical climate makes sun safety vocabulary (sunscreen, UV index, hat) naturally relevant. No tipping expectation applies."
+
+  - slug: new_zealand
+    display_name: "New Zealand"
+    scope: country
+    parent: null
+    english_reliability: high
+    local_languages:
+      - "English (official)"
+      - "Te Reo Māori (official)"
+      - "New Zealand Sign Language (official)"
+    regional_notes: "New Zealand is a native English-speaking country and a top long-haul destination for Korean travelers. Its primary draws are dramatic natural landscapes — fiords, mountains, glaciers — along with adventure tourism, Lord of the Rings filming locations, and a reputation for clean, safe, outdoor experiences. The New Zealand accent is distinct from Australian English: notably different vowel sounds, particularly the short 'i' and 'e' sounds. Māori culture, language, and place names are integrated throughout daily life, signage, and greetings (e.g. 'Kia ora'). 79% of Korean visitors arrive into Auckland; Queenstown is the top adventure and scenic destination."
+    worksheet_note: "Broad country-level entry — recommend Queenstown or Auckland for location-specific content. Key cultural notes: Māori greetings and place names will appear on signage and in daily interaction; no tipping culture; nature and outdoor activity vocabulary is especially relevant given the landscape-driven tourism draw."
+
+  - slug: queenstown
+    display_name: "Queenstown, New Zealand"
+    scope: city
+    parent: new_zealand
+    english_reliability: high
+    local_languages:
+      - "English"
+      - "Te Reo Māori (place names and greetings)"
+    regional_notes: "Queenstown is New Zealand's adventure tourism capital, set on Lake Wakatipu beneath the Remarkables mountain range on the South Island. It is the top Korean-specific destination in New Zealand and a hub for bungee jumping, skydiving, jet boating, skiing, and Milford Sound day trips. The town is small, walkable, and heavily tourism-oriented, with a high concentration of international visitors year-round."
+    worksheet_note: "Adventure activity booking and waiver-signing vocabulary is a signature Queenstown scenario — bungee, skydiving, jet boat, and ski rental interactions all involve specific English terms Korean travelers are unlikely to encounter elsewhere. Milford Sound day-trip logistics (coach booking, weather cancellation policies) are also highly relevant. No tipping culture."
+
+  - slug: auckland
+    display_name: "Auckland, New Zealand"
+    scope: city
+    parent: new_zealand
+    english_reliability: high
+    local_languages:
+      - "English"
+      - "Te Reo Māori (official — place names and greetings on signage)"
+      - "Samoan, Mandarin, Hindi (large diaspora communities)"
+    regional_notes: "Auckland is New Zealand's largest city and primary international gateway, receiving 79% of Korean visitors to the country via direct flights on Korean Air (year-round) and Air New Zealand (seasonal). Known as the 'City of Sails' for its harbour and sailing culture, it sits on an isthmus between two harbours and is built across numerous extinct volcanic cones. Auckland is one of the most ethnically diverse cities in the Pacific, with large Pacific Islander, East Asian, and South Asian communities. The NZ accent is distinct from Australian English — notably different vowel sounds on short 'i' and 'e' — and Māori place names and greetings (e.g. 'Kia ora') appear regularly in daily interaction and signage."
+    worksheet_note: "Auckland is the most likely NZ entry point for Korean travelers and often the base for South Island day trips or onward travel to Queenstown. Airport arrival and customs scenarios are particularly relevant given the strict NZ biosecurity rules — declaring food items is enforced seriously and is a distinctive English-interaction moment for Korean travelers. Sky Tower, waterfront, and Queen Street shopping scenarios are strong hooks. No tipping culture."

@@ -185,26 +185,41 @@ def _build_user_prompt(payload: dict, level: int, level_config: dict, exercise_b
 
     page4 = (
         "===PAGE4===\n" +
-        "Role Play situation card 1. Output this exact format:\n\n" +
-        "🎭 SITUATION: [scenario title — short, punchy]\n\n" +
+        "Role Play situation card 1. Output this exact format — no blank line between the SITUATION and Location lines:\n\n" +
+        "🎭 SITUATION: [scenario title — short, punchy, fun]\n" +
         "📍 Location: [specific place within " + location_display + "]\n" +
-        "👤 You are: [Korean traveler — specific description]\n" +
-        "👥 Your partner is: [who they are speaking to]\n\n" +
-        "The situation:\n" +
-        "[2-4 sentences — realistic chaos, things have gone slightly wrong, time is limited, language is a barrier]\n\n" +
+        "🦸 You are: [Original heroic traveler title — e.g. 'The Mighty Exhausted Student', 'Captain Carry-On', 'The Fearless Budget Warrior'] — [one line real-world context describing the student's actual situation]\n" +
+        "👥 [Actual role label — e.g. 'Immigration Officer', 'Taxi Driver', 'Gate Agent']: [Character description + personality in brackets — e.g. 'A by-the-book officer who has heard every excuse [Serious, impatient, speaks in short clipped sentences]']\n\n" +
+        "The plot:\n" +
+        "[2-4 sentences — realistic chaos, things have gone slightly wrong, time is limited, language is a barrier. Fun and cinematic tone.]\n\n" +
         "Your goal:\n" +
-        "[What the student must accomplish to succeed in this role play]\n\n" +
+        "[What the student must accomplish to succeed in this role play — clear and specific]\n\n" +
         "Try to use these words:\n" +
         "[3 keywords from PAGE2 and PAGE3 — choose the most useful for this card]\n\n" +
+        "✨ Start ✨\n" +
+        "[Role label]: \"[Opening line — voiced in character, with distinct personality. Fun, immersive, cinematic.]\"\n" +
+        "[Heroic title]: \"[Sentence stem that the student completes — e.g. 'Excuse me, I think there might be a _______.'] \"\n" +
+        "[Role label]: \"[Response line — in character, advancing the scene]\"\n" +
+        "[Heroic title]: ________\n" +
+        "[Role label]: \"[Optional third line if it adds energy to the scene — cut if tight]\"\n\n" +
+        "Rules for the starter dialogue:\n" +
+        "- The role label in the dialogue must match the 👥 label exactly\n" +
+        "- The heroic title in the dialogue must match the 🦸 title exactly\n" +
+        "- The character must speak with their stated personality — it must be audible in their lines\n" +
+        "- The sentence stem on the first student line must be completable by a student at level " + str(level) + "\n" +
+        "- Tone: fun, slightly chaotic, human — never dry or textbook\n" +
+        "- The scene must feel like it is already happening\n\n" +
         "Card 1 places the student at the beginning of the scenario — arriving, first contact, initial problem.\n\n"
     )
 
     page5 = (
         "===PAGE5===\n" +
-        "Role Play situation card 2. Same format as PAGE4.\n" +
-        "Card 2 escalates or shifts — a different moment in the same scenario. Different specific location within " + location_display + ", different stakes, different partner role. The student is deeper into the situation.\n" +
-        "Keywords should overlap partially but not identically with Card 1.\n" +
-        "Do not make Card 2 a repeat of Card 1 with minor changes. It must feel like a different scene.\n\n"
+        "Role Play situation card 2. Same format as PAGE4 — including the ✨ Start ✨ dialogue block.\n\n" +
+        "Card 2 escalates or shifts — a different moment in the same scenario. Different specific location within " + location_display + ", different stakes, different partner role. The student is deeper into the situation.\n\n" +
+        "Assign a different heroic traveler title to the student for Card 2 — different from Card 1. Same student, new title, new energy.\n\n" +
+        "The partner character must have a distinct personality — different from Card 1's partner. Variety is essential: if Card 1 had a serious character, Card 2 might have a chatty one, a weird one, a warm one, or an overwhelmed one.\n\n" +
+        "Keywords should overlap partially but not identically with Card 1.\n\n" +
+        "Do not make Card 2 a repeat of Card 1 with minor changes. It must feel like a different scene entirely.\n\n"
     )
 
     page6 = (

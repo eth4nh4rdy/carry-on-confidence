@@ -6,11 +6,11 @@
 provider: "openrouter"
 
 openrouter:
-  base_url: "https://openrouter.ai/api/v1/chat/completions"
+  base_url: "https://openrouter.ai/api/v1"
   api_key_env: "OPENROUTER_API_KEY"
-  model: "qwen/qwen3-235b-a22b"
-  timeout: 120             # seconds — worksheet generation prompts are long
+  model: "google/gemma-4-31b-it"
+  timeout: 440             # seconds — worksheet generation prompts are long
   generation:
-    max_tokens: 4000
+    max_tokens: 71000
     temperature: 0.8       # moderate creativity — scenarios should feel fresh but coherent
     note: "Temperature and max_tokens are starting values. Tune in Phase 2 during prompt development."

@@ -1,4 +1,44 @@
-# levels.yaml
-# Primo Scale 1-10 — shared across all Primo English programs
-# Copied from existing Primo program in Phase 0, Task 0.1
-# Do not modify without updating all Primo programs
+default_level: 6
+
+levels:
+  1:
+    label: "Phonics / Survival English"
+    cefr: "Pre-A1"
+    description: "Very basic vocabulary, simple sentences, phonics focus."
+  2:
+    label: "Beginner"
+    cefr: "A1"
+    description: "Simple everyday vocabulary, short sentences."
+  3:
+    label: "Elementary"
+    cefr: "A1-A2"
+    description: "Basic communicator, common vocabulary."
+  4:
+    label: "Pre-Intermediate"
+    cefr: "A2"
+    description: "Familiar topics, simple structures."
+  5:
+    label: "Intermediate"
+    cefr: "B1"
+    description: "Everyday and professional topics, moderate complexity."
+  6:
+    label: "Upper-Intermediate"
+    cefr: "B2"
+    description: "Complex topics, nuanced vocabulary, professional contexts."
+  7:
+    label: "Advanced"
+    cefr: "C1"
+    description: "Sophisticated vocabulary, abstract topics, professional English."
+  8:
+    label: "Upper-Advanced"
+    cefr: "C1-C2"
+    description: "Near-native fluency, academic and executive English."
+  9:
+    label: "Near-Native"
+    cefr: "C2"
+    description: "Near-native proficiency, idiomatic and nuanced."
+  10:
+    label: "Native-Level"
+    cefr: "C2+"
+    description: "Full native-level proficiency."
+

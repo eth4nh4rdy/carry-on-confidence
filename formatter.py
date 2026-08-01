@@ -135,6 +135,14 @@ def format_worksheet(content: dict, level: int, level_config: dict, topic: str, 
     plain_run = para.add_run(level_config["cefr"] + " — " + level_config["label"])
     plain_run.font.size = Pt(12)
 
+    # 3b. Location & Topic line
+    para = doc.add_paragraph()
+    bold_run = para.add_run("Location & Topic: ")
+    bold_run.bold = True
+    bold_run.font.size = Pt(12)
+    plain_run = para.add_run(location.replace("_", " ").title() + ", " + topic.replace("_", " ").title())
+    plain_run.font.size = Pt(12)
+
     # 4. Name field
     para = doc.add_paragraph()
     bold_run = para.add_run("Name: ")
